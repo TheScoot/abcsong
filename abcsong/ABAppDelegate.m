@@ -1,14 +1,14 @@
 //
-//  WBAppDelegate.m
-//  abcsong
+//  ABAppDelegate.m
+//  ABCSong
 //
-//  Created by Scott Bedard on 10/17/13.
+//  Created by Scott Bedard on 10/6/13.
 //  Copyright (c) 2013 Scott Bedard. All rights reserved.
 //
 
-#import "WBAppDelegate.h"
+#import "ABAppDelegate.h"
 
-@implementation WBAppDelegate
+@implementation ABAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

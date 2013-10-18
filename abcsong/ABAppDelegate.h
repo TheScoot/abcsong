@@ -1,14 +1,14 @@
 //
-//  WBAppDelegate.h
-//  abcsong
+//  ABAppDelegate.h
+//  ABCSong
 //
-//  Created by Scott Bedard on 10/17/13.
+//  Created by Scott Bedard on 10/6/13.
 //  Copyright (c) 2013 Scott Bedard. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface WBAppDelegate : UIResponder <UIApplicationDelegate>
+@interface ABAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

@@ -1,13 +1,14 @@
 //
-//  WBMyScene.h
-//  abcsong
+//  ABViewController.h
+//  ABCSong
 //
 
 //  Copyright (c) 2013 Scott Bedard. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
 
-@interface WBMyScene : SKScene
+@interface ABViewController : UIViewController
 
 @end
