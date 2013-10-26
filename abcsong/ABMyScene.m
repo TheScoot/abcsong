@@ -13,7 +13,12 @@
 //@property (nonatomic) AVAudioPlayer * backgroundMusicPlayer;
 //@end
 
-@implementation ABMyScene
+@implementation ABMyScene{
+    SKLabelNode *welcome;
+    SKSpriteNode *background;
+    uint backgroundDirection;
+    bool showedWelcome;
+}
 
 
 -(id)initWithSize:(CGSize)size {
@@ -50,12 +55,22 @@
         letter = 0;
         
         self.backgroundColor = [SKColor colorWithRed:0.25 green:0.25 blue:0.3 alpha:1.0];
+        
+        background = [SKSpriteNode spriteNodeWithImageNamed:@"kidsbackground"];
+        [background setAnchorPoint:CGPointZero];
+        backgroundDirection = 1;
+        [self moveBackground];
+        //background.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
+        [self addChild:background];
+        
+        
+        
         if(!showedWelcome){
             showedWelcome = YES;
-            SKLabelNode *welcome = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
-            welcome.position = CGPointMake(CGRectGetMidX(self.frame),
-                                           CGRectGetMidY(self.frame));
+            welcome = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
+            welcome.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
             welcome.fontSize = 70;
+            welcome.fontColor = [SKColor redColor];
             welcome.text = @"Touch Screen to Begin";
             welcome.zPosition = 100;
             [self addChild:welcome];
@@ -65,6 +80,7 @@
         reset.position = CGPointMake(65.0, 25.0);
         reset.text = @"Restart";
         reset.name = @"reset";
+        reset.alpha = 0.25;
         reset.zPosition = 100;
         [self addChild:reset];
         
@@ -72,6 +88,25 @@
         
     }
     return self;
+}
+
+-(void)moveBackground{
+    CGSize winSize = self.size;
+    float newX;
+
+    if(backgroundDirection == 1){
+        newX = -([background size].width - winSize.width);
+        
+    }else{
+        newX = 0.0;
+    }
+    
+    backgroundDirection = backgroundDirection * -1;
+    
+    SKAction *scrollBackground = [SKAction moveToX:newX duration:180.0];
+    //SKAction *scrollRight = [SKAction 0:maxX duration:10.0];
+    
+    [background runAction:scrollBackground completion:^{[self moveBackground];}];
 }
 
 -(void)clearScreen{
@@ -93,6 +128,10 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     
+    if(welcome.parent){
+        [welcome runAction:[SKAction sequence:@[[SKAction fadeAlphaTo:0.0 duration:0.5]]]];
+    }
+    
     for (UITouch *touch in touches) {
         BOOL showLetter = YES;
         
@@ -103,6 +142,10 @@
         if([[touchedNode name] isEqualToString:@"reset"]) {
             letter = 0;
             showLetter = NO;
+            SKAction *bright = [SKAction fadeAlphaTo:1.0 duration:0.5];
+            SKAction *wait = [SKAction waitForDuration:0.5];
+            SKAction *dim = [SKAction fadeAlphaTo:0.25 duration:0.5];
+            [touchedNode runAction:[SKAction sequence:@[bright, wait, dim]]];
             [self clearScreen];
             EXIT_SUCCESS;
         }
@@ -112,7 +155,7 @@
         SKLabelNode *newLabel = [SKLabelNode labelNodeWithFontNamed:@"Guakala"];
         
         newLabel.text = letters[letter];
-        newLabel.fontSize = 70;
+        newLabel.fontSize = (float)arc4random_uniform(25)+60;
         float red = (float)arc4random_uniform(255)/255;
         float blue = (float)arc4random_uniform(255)/255;
         float green = (float)arc4random_uniform(255)/255;
@@ -145,6 +188,8 @@
         SKEmitterNode *myParticle = [NSKeyedUnarchiver unarchiveObjectWithFile:myParticlePath];
         myParticle.particlePosition = CGPointMake(location.x, location.y);
         myParticle.particleBirthRate = 5;
+        //myParticle.particleColorBlueRange = [];
+        myParticle.particleColor = [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
         myParticle.name = @"letter";
             
         //[self runAction: [SKAction playSoundFileNamed:@"abcsong.mp3" waitForCompletion:YES]];
@@ -163,8 +208,5 @@
     }
 }
 
--(void)update:(CFTimeInterval)currentTime {
-    /* Called before each frame is rendered */
-}
 
 @end

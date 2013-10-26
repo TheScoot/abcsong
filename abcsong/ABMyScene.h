@@ -8,8 +8,6 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-static BOOL showedWelcome;
-
 @interface ABMyScene : SKScene{
     NSArray *letters;
     NSInteger letter;
