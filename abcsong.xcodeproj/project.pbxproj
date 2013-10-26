@@ -54,6 +54,7 @@
 		D24E969B1810F65E00961867 /* Y.wav in Resources */ = {isa = PBXBuildFile; fileRef = D24E96801810F65E00961867 /* Y.wav */; };
 		D24E969C1810F65E00961867 /* Z-END.wav in Resources */ = {isa = PBXBuildFile; fileRef = D24E96811810F65E00961867 /* Z-END.wav */; };
 		D24E969D1810F65E00961867 /* Z.wav in Resources */ = {isa = PBXBuildFile; fileRef = D24E96821810F65E00961867 /* Z.wav */; };
+		D2E30C1D181C50F600C9BE5E /* Swirl-green.png in Resources */ = {isa = PBXBuildFile; fileRef = D2E30C1C181C50F600C9BE5E /* Swirl-green.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +121,7 @@
 		D24E96801810F65E00961867 /* Y.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Y.wav; sourceTree = "<group>"; };
 		D24E96811810F65E00961867 /* Z-END.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Z-END.wav"; sourceTree = "<group>"; };
 		D24E96821810F65E00961867 /* Z.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Z.wav; sourceTree = "<group>"; };
+		D2E30C1C181C50F600C9BE5E /* Swirl-green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Swirl-green.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				D24E96521810F50000961867 /* MyParticle.sks */,
+				D2E30C1C181C50F600C9BE5E /* Swirl-green.png */,
 				D24E96531810F50000961867 /* Guakala.otf */,
 				D24E96631810F56E00961867 /* Images.xcassets */,
 				D24E96541810F50000961867 /* spark.png */,
@@ -359,6 +362,7 @@
 				D24E968C1810F65E00961867 /* J.wav in Resources */,
 				D24E968A1810F65E00961867 /* H.wav in Resources */,
 				D24E96961810F65E00961867 /* T.wav in Resources */,
+				D2E30C1D181C50F600C9BE5E /* Swirl-green.png in Resources */,
 				D24E968B1810F65E00961867 /* I.wav in Resources */,
 				D24E96641810F56E00961867 /* Images.xcassets in Resources */,
 				D24E96971810F65E00961867 /* U.wav in Resources */,
@@ -518,13 +522,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Scott Bedard (8LR2THBPTC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Scott Bedard (8LR2THBPTC)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "abcsong/abcsong-Prefix.pch";
 				INFOPLIST_FILE = "abcsong/abcsong-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "AB863797-8A9A-4AAB-BD37-7FEDE9B9F64B";
+				PROVISIONING_PROFILE = "68A38628-7E2E-4EDD-BA97-431ADB26CBAE";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -536,13 +540,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Scott Bedard (73KLN2H93G)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Scott Bedard (73KLN2H93G)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "abcsong/abcsong-Prefix.pch";
 				INFOPLIST_FILE = "abcsong/abcsong-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "AB863797-8A9A-4AAB-BD37-7FEDE9B9F64B";
+				PROVISIONING_PROFILE = "68A38628-7E2E-4EDD-BA97-431ADB26CBAE";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;

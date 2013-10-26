@@ -163,7 +163,7 @@
         newLabel.name = @"letter";
         newLabel.position = CGPointMake(location.x, location.y);
         //make sure this stays on the bottom
-        newLabel.zPosition = 0;
+        newLabel.zPosition = 1000;
         if(leftRight<0.0){ leftRight = 0.5; } else { leftRight = -0.5; }
         SKAction *spin = [SKAction rotateByAngle:M_PI*leftRight duration:4];
         SKAction *wait = [SKAction waitForDuration:3];
