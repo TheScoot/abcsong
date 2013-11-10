@@ -73,6 +73,9 @@
             welcome.fontColor = [SKColor redColor];
             welcome.text = @"Touch Screen to Begin";
             welcome.zPosition = 100;
+            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+                welcome.fontSize = 30;
+            }
             [self addChild:welcome];
             [welcome runAction:[SKAction sequence:@[[SKAction waitForDuration:2.0], [SKAction fadeAlphaTo:0.0 duration:1.0]]] completion:^{[welcome removeFromParent];}];
         }
@@ -80,6 +83,9 @@
         reset.position = CGPointMake(65.0, 25.0);
         reset.text = @"Restart";
         reset.name = @"reset";
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+            reset.fontSize = 30;
+        }
         reset.alpha = 0.25;
         reset.zPosition = 100;
         [self addChild:reset];
@@ -103,7 +109,7 @@
     
     backgroundDirection = backgroundDirection * -1;
     
-    SKAction *scrollBackground = [SKAction moveToX:newX duration:180.0];
+    SKAction *scrollBackground = [SKAction moveToX:newX duration:120.0f];
     //SKAction *scrollRight = [SKAction 0:maxX duration:10.0];
     
     [background runAction:scrollBackground completion:^{[self moveBackground];}];
