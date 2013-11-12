@@ -15,9 +15,15 @@
 
 @implementation ABMyScene{
     SKLabelNode *welcome;
-    SKSpriteNode *background;
-    uint backgroundDirection;
+    NSArray *scenes;
     bool showedWelcome;
+    NSArray *letters;
+    NSInteger letter;
+    float leftRight;
+    SKLabelNode *reset;
+    bool pastFirstScene;
+    SKNode *landscapeNode;
+    bool landscapeMoveRight;
 }
 
 
@@ -54,17 +60,43 @@
                     ];
         letter = 0;
         
+        scenes = @[@"streetscene",
+                   @"trainscene",
+                   @"winterscene",
+                   @"kidsscene"
+                   ];
+
+        landscapeNode  = [SKNode node];
+        CGRect landscapeRect;
+        int newX;
+        unsigned char sceneIndex = arc4random_uniform(scenes.count - 1);
+        for(int i=0; i <= scenes.count; i++){
+            SKSpriteNode *newScene = [SKSpriteNode spriteNodeWithImageNamed:scenes[sceneIndex]];
+            newScene.anchorPoint = CGPointMake(0,0);
+            landscapeRect = landscapeNode.calculateAccumulatedFrame;
+            if(landscapeRect.size.width != INFINITY){
+                newX = landscapeRect.size.width;
+            } else {
+                newX = 0;
+            }
+            newScene.position = CGPointMake(newX, 0);
+            newScene.scale = self.size.height/newScene.size.height;
+            sceneIndex ++;
+            if(sceneIndex > scenes.count - 1){
+                sceneIndex = 0;
+            }
+            [landscapeNode addChild:newScene];
+        }
+        //for(NSString *nextScene in scenes){
+        //}
+        [self addChild:landscapeNode];
+        
+        sceneIndex = arc4random_uniform(scenes.count - 1);
+
         self.backgroundColor = [SKColor colorWithRed:0.25 green:0.25 blue:0.3 alpha:1.0];
         
-        background = [SKSpriteNode spriteNodeWithImageNamed:@"kidsbackground"];
-        [background setAnchorPoint:CGPointZero];
-        backgroundDirection = 1;
         [self moveBackground];
-        //background.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
-        [self addChild:background];
-        
-        
-        
+
         if(!showedWelcome){
             showedWelcome = YES;
             welcome = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
@@ -99,20 +131,22 @@
 -(void)moveBackground{
     CGSize winSize = self.size;
     float newX;
+    float speed;
 
-    if(backgroundDirection == 1){
-        newX = -([background size].width - winSize.width);
-        
-    }else{
-        newX = 0.0;
+    CGRect landscapeRect = landscapeNode.calculateAccumulatedFrame;
+    
+    if(landscapeMoveRight == YES){
+        newX = 0;
+    } else {
+        newX = -(landscapeRect.size.width - winSize.width);
     }
+    speed = (landscapeRect.size.width / 50);
     
-    backgroundDirection = backgroundDirection * -1;
+    landscapeMoveRight = !landscapeMoveRight;
     
-    SKAction *scrollBackground = [SKAction moveToX:newX duration:120.0f];
-    //SKAction *scrollRight = [SKAction 0:maxX duration:10.0];
+    SKAction *scrollBackground = [SKAction moveToX:newX duration:speed];
     
-    [background runAction:scrollBackground completion:^{[self moveBackground];}];
+    [landscapeNode runAction:scrollBackground completion:^{[self moveBackground];}];
 }
 
 -(void)clearScreen{
@@ -130,7 +164,6 @@
         }
     }
 }
-
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     
@@ -170,7 +203,7 @@
         newLabel.position = CGPointMake(location.x, location.y);
         //make sure this stays on the bottom
         newLabel.zPosition = 1000;
-        if(leftRight<0.0){ leftRight = 0.5; } else { leftRight = -0.5; }
+        if(leftRight<0.0){ leftRight = 0.25; } else { leftRight = -0.25; }
         SKAction *spin = [SKAction rotateByAngle:M_PI*leftRight duration:4];
         SKAction *wait = [SKAction waitForDuration:3];
         SKAction *fadeAway = [SKAction fadeOutWithDuration:1];
@@ -211,6 +244,8 @@
             letter = 0;
         }
         }
+        //get out after one touch
+        return;
     }
 }
 

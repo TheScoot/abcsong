@@ -8,11 +8,6 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface ABMyScene : SKScene{
-    NSArray *letters;
-    NSInteger letter;
-    float leftRight;
-    SKLabelNode *reset;
-}
+@interface ABMyScene : SKScene
 
 @end
