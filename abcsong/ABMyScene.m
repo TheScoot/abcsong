@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Scott Bedard. All rights reserved.
 //
 
+//This was my first XCode project and is a real mess, but it works and my kids love it, so why change now!
+
 #import "ABMyScene.h"
 //@import AVFoundation;
 //
@@ -194,7 +196,11 @@
         SKLabelNode *newLabel = [SKLabelNode labelNodeWithFontNamed:@"Guakala"];
         
         newLabel.text = letters[letter];
-        newLabel.fontSize = (float)arc4random_uniform(25)+60;
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+            newLabel.fontSize = (float)arc4random_uniform(25)+30;
+        } else {
+            newLabel.fontSize = (float)arc4random_uniform(25)+60;
+        }
         float red = (float)arc4random_uniform(255)/255;
         float blue = (float)arc4random_uniform(255)/255;
         float green = (float)arc4random_uniform(255)/255;
@@ -203,7 +209,7 @@
         newLabel.position = CGPointMake(location.x, location.y);
         //make sure this stays on the bottom
         newLabel.zPosition = 1000;
-        if(leftRight<0.0){ leftRight = 0.25; } else { leftRight = -0.25; }
+        if(leftRight<0.0){ leftRight = 0.15; } else { leftRight = -0.15; }
         SKAction *spin = [SKAction rotateByAngle:M_PI*leftRight duration:4];
         SKAction *wait = [SKAction waitForDuration:3];
         SKAction *fadeAway = [SKAction fadeOutWithDuration:1];
