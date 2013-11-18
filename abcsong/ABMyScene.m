@@ -142,7 +142,11 @@
     } else {
         newX = -(landscapeRect.size.width - winSize.width);
     }
-    speed = (landscapeRect.size.width / 50);
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        speed = (landscapeRect.size.width / 10);
+    } else {
+        speed = (landscapeRect.size.width / 30);
+    }
     
     landscapeMoveRight = !landscapeMoveRight;
     
