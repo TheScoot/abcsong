@@ -67,6 +67,11 @@
                    @"winterscene",
                    @"kidsscene"
                    ];
+        scenes = @[@"abc-cats1",
+                   @"abc-cats2",
+                   @"abc-dogs1",
+                   @"abc-dogscats"
+                   ];
 
         landscapeNode  = [SKNode node];
         CGRect landscapeRect;
