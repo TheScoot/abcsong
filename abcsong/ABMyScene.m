@@ -62,17 +62,20 @@
                     ];
         letter = 0;
         
-        scenes = @[@"streetscene",
+        if(arc4random_uniform(2) == 0){
+            scenes = @[@"streetscene",
                    @"trainscene",
                    @"winterscene",
                    @"kidsscene"
                    ];
-        scenes = @[@"abc-cats1",
+        } else {
+            scenes = @[@"abc-cats1",
                    @"abc-cats2",
                    @"abc-dogs1",
                    @"abc-dogscats"
                    ];
-
+        }
+        
         landscapeNode  = [SKNode node];
         CGRect landscapeRect;
         int newX;
